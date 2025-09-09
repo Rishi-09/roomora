@@ -16,17 +16,24 @@ async function main() {
 }
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
+app.use(express.urlencoded({extended:true}));
 app.get("/",(req,res)=>{
     res.send("working");
 })
 
+//Index Route
 app.get("/listings",async (req,res)=>{
     console.log("ok");
     const allListings = await Listing.find({});
     res.render("listings/index.ejs", { allListings });
 });
 
-
+//Show Route
+app.get("/listings/:id", async (req,res)=>{
+    let { id } = req.params;
+    const listing = await Listing.findById(id);
+    res.render("listings/show.ejs",{ listing });
+})
 
 
 
