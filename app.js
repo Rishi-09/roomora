@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const Listing = require("./models/listing.js");
 const { title } = require("process");
+const methodoverride = require("method-override");
 
 
 
@@ -28,6 +29,12 @@ app.get("/listings",async (req,res)=>{
     res.render("listings/index.ejs", { allListings });
 });
 
+//Create Route
+app.get("/listings/new",(req,res)=>{
+    res.render("listings/createListing");
+})
+
+
 //Show Route
 app.get("/listings/:id", async (req,res)=>{
     let { id } = req.params;
@@ -35,6 +42,22 @@ app.get("/listings/:id", async (req,res)=>{
     res.render("listings/show.ejs",{ listing });
 })
 
+app.post("/listings",async (req,res)=>{
+    let newListing = new Listing(req.body);
+    await newListing.save();
+    res.redirect("/listings");
+} )
+
+
+app.get("/listings/:id/edit",async (req,res)=>{
+    let { id } = req.params;
+    const listingData = Listing.findById(id);
+    res.render("listings/edit", { listingData });
+})
+
+app.put("/listings/:id", async (req,res)=>{
+
+})
 
 
 // app.get("/testlisting",async (req,res)=>{
