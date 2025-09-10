@@ -10,5 +10,8 @@
     <p><%=listing.description%></p>
     <img src="<%=listing.image%>" alt="">
     <p><%=listing.price.toLocaleString()%></p>
+    <form action="/listings/<%=listing._id%>/edit" method="GET">
+        <button>Edit</button>
+    </form>
 </body>
 </html>
