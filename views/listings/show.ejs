@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=listing.title%></title>
-</head>
+<%- layout("/layouts/boilerplate.ejs") %>
 <body>
     <h1><%=listing.title%></h1>
     <p><%=listing.description%></p>
@@ -17,4 +11,3 @@
         <button>Delete</button>
     </form>
 </body>
-</html> 
