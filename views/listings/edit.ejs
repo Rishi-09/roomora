@@ -6,20 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="listings/<%= listingData._id %>?_method=PUT" method="POST">
-        <input type="text" name="title"  placeholder="enter new title" value="<%=listingData.title%>">
+    <form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
+        <input type="text" name="title"   value="<%=listing.title%>">
         <br>
         <br>
-        <textarea name="description" id="description"><%=listingData.description%></textarea>
+        <textarea name="description" id="description" ><%=listing.description%></textarea>
         <br>
         <br>
-        <input type="text" name="image" id="image"  value="<%=listingData.image%>" >
+        <input type="text" name="image" id="image"  value="<%= listing.image %>" >
         <br><br>
-        <input type="number" name="price" id="price"  value="<%=listingData.price%>">
+        <input type="number" name="price" id="price"  value="<%=listing.price%>">
         <br><br>
-        <input type="text" name="location" id="location"  value="<%=listingData.location%>">
+        <input type="text" name="location" id="location"  value="<%=listing.location%>">
         <br><br>
-        <input type="text" name="country" id="country"  value="<%= listingData.country %>">
+        <input type="text" name="country" id="country"  value="<%= listing.country %>">
         <br><br>
         <button>Done</button>
 </body>
