@@ -18,6 +18,11 @@ async function main() {
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
 app.use(express.urlencoded({extended:true}));
+app.use(methodoverride("_method"));
+
+
+
+// root route
 app.get("/",(req,res)=>{
     res.send("working");
 })
@@ -48,16 +53,29 @@ app.post("/listings",async (req,res)=>{
     res.redirect("/listings");
 } )
 
-
+//Edit route
 app.get("/listings/:id/edit",async (req,res)=>{
     let { id } = req.params;
-    const listingData = Listing.findById(id);
-    res.render("listings/edit", { listingData });
+    const listing = await Listing.findById(id);
+    console.log(listing);
+    res.render("listings/edit", { listing });
 })
 
 app.put("/listings/:id", async (req,res)=>{
-
+    let { id } = req.params;
+    await Listing.findByIdAndUpdate(id,req.body);
+    res.redirect(`/listings/${id}`);
 })
+
+//Delete route
+app.delete("/listings/:id",async (req,res)=>{
+    let { id } = req.params;
+    await Listing.findByIdAndDelete(id);
+    res.redirect("/listings");
+})
+
+
+
 
 
 // app.get("/testlisting",async (req,res)=>{
