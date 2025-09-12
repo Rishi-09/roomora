@@ -31,25 +31,32 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-
     height: 8rem;
     background-color: #ebebeb;
 }
 
-.cards-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: stretch;
+.card{
+    border-radius: 20px;
+    border: none;
+    margin: 5px;
 }
 
-.card{
-    width: 30rem;
-     border-radius: 20px;
-     margin: 15px;
+.card-img-top{
+    border-radius: 20px;
+    object-fit: cover;
+    height: 20rem;
 }
-.card-img-top {
-  border-radius: 20px;
-  height: 300px;            /* adjust as needed */
-  object-fit: cover;        /* crop image nicely */
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+  opacity: 0.2;
+  background-color: white;
+}
+.listing-link{
+    text-decoration: none;
+    margin: 0;
+}
+h1,h3{
+    text-align: center;
 }
