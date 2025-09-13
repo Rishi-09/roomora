@@ -60,3 +60,16 @@
 h1,h3{
     text-align: center;
 }
+
+/*New Listing Page */
+
+.btn{
+    background-color: #fe424d;
+    border: none;
+    color: white;
+}
+
+.btn:hover{
+    background-color: #ca1f2b !important;
+    color: white !important;
+}
