@@ -1,19 +1,44 @@
 <%- layout("/layouts/boilerplate.ejs") %>
-<body>
+<br><br>
+<h3>Edit Your Listing</h3>
+<br>
+<div class="row">
+    <div class="col-8 offset-2">
     <form action="/listings/<%= listing._id %>?_method=PUT" method="POST">
-        <input type="text" name="title"   value="<%=listing.title%>">
+        <div class="mb-3">
+            <label for="title" class="form-label" >Title</label>
+            <input type="text" name="title"  class="form-control" value="<%=listing.title%>">
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label" >Description</label>
+            <textarea name="description" id="description" class="form-control"><%=listing.description%></textarea>
+        </div>
+        
+       <div class="mb-3">
+        <label for="image">Image</label>
+         <input type="text" name="image" id="image"  class="form-control" value="<%= listing.image %>" >
+       </div>
+        
+        <div class="row ">
+            <div class="mb-3 col-md-4">
+            <label for="price" class="form-label" >Price</label>
+            <input type="number" name="price" id="price"  class="form-control" value="<%=listing.price%>">
+        </div>
+       
+        <div class="mb-3 col-md-4">
+            <label for="location" class="form-label" >Location</label>
+            <input type="text" name="location" id="location" class="form-control" value="<%=listing.location%>">
+        </div>
+        </div>
+        
+        <div class="mb-3 col-6">
+            <label for="country" class="form-label" >Country</label>
+            <input type="text" name="country" id="country"  class="form-control" value="<%= listing.country %>">
+        </div>
         <br>
-        <br>
-        <textarea name="description" id="description" ><%=listing.description%></textarea>
-        <br>
-        <br>
-        <input type="text" name="image" id="image"  value="<%= listing.image %>" >
+        <button class="btn" >Edit</button>
         <br><br>
-        <input type="number" name="price" id="price"  value="<%=listing.price%>">
-        <br><br>
-        <input type="text" name="location" id="location"  value="<%=listing.location%>">
-        <br><br>
-        <input type="text" name="country" id="country"  value="<%= listing.country %>">
-        <br><br>
-        <button>Done</button>
-</body>
+</form>
+</div>
+</div>
