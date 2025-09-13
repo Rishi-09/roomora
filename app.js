@@ -59,7 +59,6 @@ app.post("/listings",async (req,res)=>{
 app.get("/listings/:id/edit",async (req,res)=>{
     let { id } = req.params;
     const listing = await Listing.findById(id);
-    console.log(listing);
     res.render("listings/edit", { listing });
 })
 
@@ -78,21 +77,6 @@ app.delete("/listings/:id",async (req,res)=>{
 
 
 
-
-
-// app.get("/testlisting",async (req,res)=>{
-//     let sampleListing = new Listing({
-//         title:"My new Villa",
-//         description :"by the beach",
-//         price:1200,
-//         location:"jalandhar",
-//         country:"India"
-//     });
-
-//     await sampleListing.save();
-//     console.log("saved");
-//     res.send("done");
-// })
 app.listen(8080,(req,res)=>{
     console.log("http://localhost:8080")
 })
