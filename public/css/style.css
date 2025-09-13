@@ -67,9 +67,20 @@ h1,h3{
     background-color: #fe424d;
     border: none;
     color: white;
+    padding: 5px 30px 10px 30px;
 }
 
 .btn:hover{
     background-color: #ca1f2b !important;
     color: white !important;
+}
+
+.dlt-btn{
+    background-color: #3b3a3a;
+    border: none;
+    color: white;
+    padding: 5px 30px 10px 30px;
+}
+.dlt-btn:hover{
+    background-color: #222222 !important;
 }
