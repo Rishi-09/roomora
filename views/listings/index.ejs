@@ -5,10 +5,8 @@
     </form> -->
 <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 row-cols-xsm-1 ">
   <% for(let listing of allListings){ %>
-  <!-- <a class="listing-link" href="listings/<%= listing._id %>">
-    
-  </a> -->
-  <div class="card " style="width: 20em">
+   <a class="listing-link" href="listings/<%= listing._id %>">
+    <div class="card h-100" style="width: 20em">
     <img src="<%=listing.image%>" class="card-img-top" alt="..."  />
     <div class="card-img-overlay"></div>
     <div class="card-body">
@@ -19,5 +17,7 @@
       </p>
     </div>
   </div>
+  </a> 
+  
   <% } %>
 </div>
