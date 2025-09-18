@@ -13,7 +13,7 @@ It was built as a practice project to understand **full-stack development** conc
 - HTML, CSS, JavaScript
 - Node.js, Express.js (backend)
 - MongoDB (database)
-- React.js (frontend)
+- BootStrap
 
 ## 📂 Installation & Setup
 1. Clone the repo:
