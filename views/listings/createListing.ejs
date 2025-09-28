@@ -3,9 +3,9 @@
 <h2 style="text-align: center;" >Create New listing</h2>
 <div class="row">
     <div class="col-8 offset-2 ">
-<form action="/listings" method="POST">
+<form action="/listings" method="POST" class="needs-validation" novalidate>
   <div class="mb-3" >
-    <input type="text" name="title" placeholder="Enter Title" class="form-control"/>
+    <input type="text" name="title" placeholder="Enter Title" class="form-control" required />
   </div>
   <div class="mb-3">
     <textarea
@@ -13,6 +13,7 @@
       id="description"
       placeholder="write description"
       class="form-control"
+      required
     ></textarea>
   </div>
   <div class="mb-3" >
@@ -22,21 +23,22 @@
       name="image"
       id="image"
       placeholder="enter image link/url"
+      required
     />
   </div  >
   <div class="row">
     <div class="mb-3 col-5" >
-    <input type="number" name="price" id="price" placeholder="Price"  class="form-control" />
+    <input type="number" name="price" id="price" placeholder="Price" required  class="form-control" />
   </div>
   <div class="mb-3 col-5" >
-    <input type="text" placeholder="location" name="location" id="location" class="form-control"/>
+    <input type="text" placeholder="location" name="location" id="location" required class="form-control"/>
   </div>
   </div>
   <div class="mb-3 col-5" >
-    <input type="text" name="country" id="country" placeholder="country" class="form-control" />
+    <input type="text" name="country" id="country" placeholder="country" required class="form-control" />
   </div>
   <br>
-  <button class="btn">Add</button>
+  <button class="btn">Add</button>  
   <br><br>
 </form>
 </div>
