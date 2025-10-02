@@ -1,5 +1,5 @@
 const express = require("express");
-const { default: mongoose } = require("mongoose");
+const { default: mongoose, Schema } = require("mongoose");
 
 
 const listingSchema = new mongoose.Schema({
@@ -15,8 +15,14 @@ const listingSchema = new mongoose.Schema({
     },
     price:Number,
     location:String,
-    country:String
-})
+    country:String,
+    reviews:[
+        {
+            type:Schema.Types.ObjectId,
+            ref:"Review" 
+        }
+    ]
+});
 
 const Listing = mongoose.model("Listing",listingSchema);
 
