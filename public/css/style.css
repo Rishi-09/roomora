@@ -92,3 +92,19 @@ h1,h3{
 }
 
 /* Show.ejs */
+
+.content{
+    display: flex;
+    justify-content: center;
+   flex-wrap: wrap;
+    align-items: center;
+    margin: 10px;
+}
+
+.review{
+    width: 50vw !important;
+}
+
+.review-btn{
+    margin: 10px;
+}
