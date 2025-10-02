@@ -1,32 +1,48 @@
 <%- layout("/layouts/boilerplate.ejs") %>
-    <h3>Listings Details</h3>
-    <div class="row">
-        <div class="col offset-2" >
-            <div class="card col-6">
-        <img src="<%=listing.image%>" class="card-img-top show-img" alt="...">
-        <div class="card-body">
-            <b><%=listing.title%></b>
-            <p class="card-text" style="padding: 10px;">
-                <%=listing.description%>
-                <br>
-                $<%=listing.price.toLocaleString()%>
-                <br>
-                <%= listing.location %>
-                <br>
-                <%= listing.country%>
-            </p>
-            
-        </div>
+<h3><%=listing.title%></h3>
+<div class="">
+  <div class="content">
+    <div class="show-img" style="margin-right: 0">
+      <img src="<%=listing.image%>" class="card-img-top " alt="..." />
+      <div class="card-body">
+        <p class="card-text" style="padding: 10px">
+          <%=listing.description%>
+          <br />
+          $<%=listing.price.toLocaleString()%>
+          <br />
+          <%= listing.location %>
+          <br />
+          <%= listing.country%>
+        </p>
+      </div>
     </div>
-    <div class=" offset-1" style="display: flex;" >
-        <form action="/listings/<%=listing._id%>/edit" method="GET">
-        <button class="btn  offset-1" >Edit</button>
+  </div>
+  <div class="offset-3" style="display: flex">
+    <form action="/listings/<%=listing._id%>/edit" method="GET">
+      <button class="btn offset-1">Edit</button>
     </form>
     <form action="/listings/<%=listing._id%>?_method=DELETE" method="POST">
-        <button class="dlt-btn btn offset-2" >Delete</button>
+      <button class="dlt-btn btn offset-2">Delete</button>
     </form>
-    </div>
+  </div>
+  <hr>  
+  <div class="offset-3 review  mb-3" >
+    <h5>Leave a Review</h5>
+    <form action="/listings/<%=listing.id%>/reviews" method="POST" novalidate class="needs-validation" >
+        <div class="mb-3" >
+            <label for="rating">Rating</label>
+            <input type="range" min="1" max="5" name="rating" class="form-range" >
         </div>
-    </div>
-    
-    
+        <div class="comment  mb-3">
+            <textarea name="comment"  rows="5" placeholder="comment" class="form-control" required></textarea>
+            <div class="invalid-feedback">Please write Something</div>
+        </div>
+        <button class="btn review-btn" >Post</button>
+    </form>
+  </div>
+  <div class="offset-3" >
+    <h4>reviews</h4>
+    <p> <%=listing.reviews[0].rating%></p>
+    <p> <%=listing.reviews[0].comment%></p>
+  </div>
+</div>
