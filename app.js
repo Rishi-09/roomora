@@ -33,7 +33,7 @@ const validateListing = (req,res,next) =>{
         throw new ExpressError(400,error)
     }
     else{
-        next(err);
+        next(error);
     }
 }
 
@@ -55,7 +55,6 @@ app.get("/",(req,res)=>{
 
 //Index Route
 app.get("/listings",wrapAsync(async (req,res)=>{
-    console.log("ok");
     const allListings = await Listing.find({});
     res.render("listings/index.ejs", { allListings });
 }));
@@ -69,13 +68,13 @@ app.get("/listings/new",(req,res)=>{
 //Show Route
 app.get("/listings/:id", wrapAsync(async (req,res)=>{
     let { id } = req.params;
-    const listing = await Listing.findById(id);
+    const listing = await Listing.findById(id).populate("reviews");
     res.render("listings/show.ejs",{ listing });
 }));
 
 //Create Route
 app.post("/listings",validateListing,wrapAsync(async (req,res,next)=>{
-    let newListing = new Listing(req.body);
+    let newListing = new Listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
 }));
@@ -107,8 +106,8 @@ app.post("/listings/:id/reviews",validateReview,wrapAsync(async(req,res)=>{
     listing.reviews.push(newReview);
     await newReview.save();
     await listing.save();
-    console.log("new review saved")
-    res.redirect(`/listings/${listing._id}`);
+    console.log("new review saved");
+    res.redirect(`/listings/${listing._id}`,);
 }));
 
 
