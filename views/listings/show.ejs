@@ -42,7 +42,11 @@
   </div>
   <div class="offset-3" >
     <h4>reviews</h4>
-    <p> <%=listing.reviews[0].rating%></p>
-    <p> <%=listing.reviews[0].comment%></p>
+      <% for( let review of listing.reviews ) { %>
+      <div>
+        <p> <b>rating :</b> <%= review.rating %>&#9733;</p>
+        <p> <b>Comment :</b> <%= review.comment %></p>
+      </div>
+      <% } %>
   </div>
 </div>
