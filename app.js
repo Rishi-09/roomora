@@ -2,14 +2,13 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const path = require("path");
-const Listing = require("./models/listing.js");
-const { title } = require("process");
 const methodoverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
-const {listingSchema,reviewSchema} = require("./schema.js");
-const Review = require("./models/review.js");
+const session = require("express-session");
+const flash = require("connect-flash");
+const listings = require("./routes/listing.js");
+const reviews = require("./routes/review.js");
 
 
 main()
@@ -27,106 +26,30 @@ app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 
-const validateListing = (req,res,next) =>{
-    let { error } = listingSchema.validate(req.body);
-    if(error){
-        throw new ExpressError(400,error)
+
+const sessionOptions = {
+    secret:"secretcode",
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        expires:Date.now()+ ( 24 * 7 * 60 * 60 * 1000),
+        maxAge:24 * 7 * 60 * 60 * 1000,
+        httpOnly:true,
     }
-    else{
-        next(error);
-    }
-}
+};
+
+app.use(session(sessionOptions));
+app.use((flash()));
 
 
-const validateReview = (req,res,next) =>{
-    let { error } = reviewSchema.validate(req.body);
-    if(error){
-        throw new ExpressError(400,error)
-    }
-    else{
-        next(error);
-    }
-}
-
-// root route
-app.get("/",wrapAsync(async(req,res)=>{
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
-}));
-
-//Index Route
-app.get("/listings",wrapAsync(async (req,res)=>{
-    const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
-}));
-
-
-app.get("/listings/new",(req,res)=>{
-    res.render("listings/createListing");
+app.use((req,res,next)=>{
+    res.locals.success =req.flash("success");
+    res.locals.error =req.flash("error");
+    next();
 })
 
-
-//Show Route
-app.get("/listings/:id", wrapAsync(async (req,res)=>{
-    let { id } = req.params;
-    const listing = await Listing.findById(id).populate("reviews");
-    res.render("listings/show.ejs",{ listing });
-}));
-
-//Create Route
-app.post("/listings",validateListing,wrapAsync(async (req,res,next)=>{
-    let newListing = new Listing(req.body);
-    await newListing.save();
-    res.redirect("/listings");
-}));
-
-//Edit route
-app.get("/listings/:id/edit", validateListing,wrapAsync(async (req,res)=>{
-    let { id } = req.params;
-    const listing = await Listing.findById(id);
-    res.render("/listings/edit", { listing });
-}));
-
-app.put("/listings/:id", wrapAsync(async (req,res)=>{
-    let result = listingSchema.validate(req.body);
-    if(result.error){
-        throw new ExpressError(400,`${result.error}`);
-    }
-    let { id } = req.params;
-    await Listing.findByIdAndUpdate(id,req.body);
-    res.redirect(`/listings/${id}`);
-}));
-
-
-
-//Review Route
-app.post("/listings/:id/reviews",validateReview,wrapAsync(async(req,res)=>{
-    let {id} = req.params;
-    let listing = await Listing.findById(id);
-    let newReview = new Review(req.body);
-    listing.reviews.push(newReview);
-    await newReview.save();
-    await listing.save();
-    console.log("new review saved");
-    res.redirect(`/listings/${listing._id}`,);
-}));
-
-
-//Delete route
-app.delete("/listings/:id",wrapAsync(async (req,res)=>{
-    let { id } = req.params;
-    await Listing.findByIdAndDelete(id);
-    res.redirect("/listings");
-}));
-
-
-//Delete Review Route
-app.delete("/listings/:id/reviews/:reviewId",wrapAsync(async(req,res)=>{
-    let {id, reviewId} = req.params;
-    await Listing.findByIdAndUpdate(id,{$pull:{reviews:reviewId}});
-    await Review.findByIdAndDelete(reviewId);
-    res.redirect(`/listings/${id}`);
-}))
+app.use("/listings",listings);
+app.use("/listings/:id/reviews",reviews);
 
 
 app.use((req,res,next)=>{
