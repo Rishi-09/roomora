@@ -70,16 +70,19 @@ h1,h3{
 /*New Listing Page */
 
 .btn{
-    background-color: #fe424d;
     border: none;
     color: white;
     padding: 5px 30px 10px 30px;
 }
 
-.btn:hover{
-    background-color: #ca1f2b !important;
-    color: white !important;
+.edit-btn{
+    background-color: #fe424d;
 }
+.edit-btn:hover{
+    color: white;
+    background-color: #e62e3a;
+}
+
 
 .dlt-btn{
     background-color: #3b3a3a;
@@ -88,7 +91,8 @@ h1,h3{
     padding: 5px 30px 10px 30px;
 }
 .dlt-btn:hover{
-    background-color: #222222 !important;
+    color: white;
+    background-color: #222222;
 }
 
 /* Show.ejs */
@@ -105,6 +109,3 @@ h1,h3{
     width: 50vw !important;
 }
 
-.review-btn{
-    margin: 10px;
-}
