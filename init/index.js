@@ -14,8 +14,9 @@ const { init } = require("../models/listing");
  
  const initDB = async () =>{
     await Listing.deleteMany({});
+    initData.data = initData.data.map((obj)=>({...obj,owner:"68e263826ff6b59206fcfdce"}));
     await Listing.insertMany(initData.data);
-    console.log("data was initialised")
+    console.log("data was initialised");
  }
 
  initDB(); 
