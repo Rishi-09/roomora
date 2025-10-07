@@ -39,7 +39,7 @@
 .listing-card{
     border-radius: 20px;
     border: none;
-    margin: 20px;
+    margin: 10px 0;
   
 }
 
@@ -56,6 +56,13 @@
   opacity: 0.2;
   background-color: white;
 }
+.fixed-img {
+  width: 100%;              
+  height: 300px;        
+  object-fit: cover;    
+  border-radius: 20px;
+}
+
 .listing-link{
     text-decoration: none;
     margin: 0;
@@ -107,5 +114,8 @@ h1,h3{
 
 .review{
     width: 50vw !important;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
 }
 
