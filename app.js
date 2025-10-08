@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV !="production"){
+    require("dotenv").config();
+}
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -64,18 +67,6 @@ app.use((req,res,next)=>{
 
 
 
-app.get('/demouser',async (req,res)=>{
-    let fakeUser = new User({
-        email:"me@gmail.com",
-        username:"mee"
-    });
-
-    let regusteredUser = await User.register(fakeUser,"helloworld");
-    res.send(regusteredUser);
-})
-
-
-
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter);
@@ -87,7 +78,6 @@ app.use((req,res,next)=>{
 app.use((err,req,res,next)=>{
     let {statusCode=500,message="Something went wrong!"}=err;
     res.status(statusCode).render("Error.ejs",{ message }); 
-    // res.status(statusCode).send(message);
 })
 
 app.listen(8080,(req,res)=>{
