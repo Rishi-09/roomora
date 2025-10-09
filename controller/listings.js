@@ -44,11 +44,12 @@ module.exports.createListing = async (req, res, next) => {
 module.exports.renderEdit = async (req, res) => {
   let { id } = req.params;
   const listing = await Listing.findById(id);
+  let originalUrl = listing.image.url;
   if (!listing) {
     req.flash("error", " Listing Does Not Exist!");
     res.redirect("/listings");
   } else {
-    res.render("listings/edit.ejs", { listing });
+    res.render("listings/edit.ejs", { listing,originalUrl });
   }
 };
 
@@ -58,7 +59,13 @@ module.exports.editListing = async (req, res) => {
     throw new ExpressError(400, `${result.error}`);
   }
   let { id } = req.params;
-  await Listing.findByIdAndUpdate(id, req.body);
+  let listing = await Listing.findByIdAndUpdate(id, req.body);
+  if(typeof req.file!=="undefined"){
+  let url = req.file.path;
+  let filename = req.file.filename;
+  listing.image = {url,filename};
+  await listing.save()
+  };
   req.flash("success", " Listing Edited!");
   res.redirect(`/listings/${id}`);
 };
