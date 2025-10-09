@@ -4,7 +4,7 @@
 <br>
 <div class="row">
     <div class="col-8 offset-2">
-    <form action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate method="POST">
+    <form action="/listings/<%= listing._id %>?_method=PUT" class="needs-validation" novalidate method="POST" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="title" class="form-label" >Title</label>
             <input type="text" name="title"  class="form-control" value="<%=listing.title%>" required>
@@ -17,7 +17,9 @@
         
        <div class="mb-3">
         <label for="image">Image</label>
-         <input type="text" name="image" id="image"  class="form-control" required value="<%= listing.image %>" >
+        <br>
+        <img src="<%=originalUrl%>" alt="listing image" height="100px" width="200px" style="border-radius: 20px;">
+         <input type="file" name="image" id="image"  class="form-control"  >
        </div>
         
         <div class="row ">
@@ -28,7 +30,7 @@
        
         <div class="mb-3 col-md-4">
             <label for="location" class="form-label" >Location</label>
-            <input type="text" name="location" id="location" class="form-control" required value="<%=listing.location%>">
+            <input type="text" name="location" id="location" class="form-control" required value="<%=listing.location%>"/>
         </div>
         </div>
         
