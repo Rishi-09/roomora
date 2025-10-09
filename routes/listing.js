@@ -30,7 +30,7 @@ router.route("/new").get(isLoggedIn, renderCreate);
 // Show, Edit and Delete Listing
 router.route("/:id")
   .get(wrapAsync(show))
-  .put(isLoggedIn, isOwner, wrapAsync(editListing))
+  .put(isLoggedIn, isOwner,upload.single("image"),validateListing, wrapAsync(editListing))
   .delete(isLoggedIn, isOwner, wrapAsync(deleteListing));
 
 //Render Edit form
