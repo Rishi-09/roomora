@@ -1,10 +1,104 @@
 <%- layout("/layouts/boilerplate.ejs") %>
-<h3 class="m-3" >All listings</h3>
+
+<style>
+  #filters{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .filter{
+    text-align: center;
+    margin: 1rem 1rem 0 1rem;
+    opacity: 0.6;
+  }
+  .filter:hover{
+    opacity: 1;
+  }
+</style>
+
+<div id="filters" >
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+   <div class="filter" >
+    <div><i class="fa-solid fa-bed" ></i></div>
+    <p>Rooms</p>
+  </div>
+  <div class="filter" >
+    <div><i class="fa-solid fa-fire" ></i></div>
+    <p>Trending</p>
+  </div>
+ </div>
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xsm-1">
   <% for(let listing of allListings){ %>
   <a class="listing-link" href="listings/<%= listing._id %>">
     <div class="card listing-card h-92" style="width: 28em">
-      <img src="<%=listing.image%>" class="card-img-top" alt="..." />
+      <img src="<%=listing.image.url%>" class="card-img-top" alt="..." />
       <div class="card-img-overlay"></div>
       <div class="card-body">
         <p class="card-text">
