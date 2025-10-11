@@ -1,4 +1,4 @@
-# Roomora 🏨
+# Roomora 
 
 Roomora is a simple web platform for booking rooms and resorts.  
 It was built as a practice project to understand **full-stack development** concepts.
@@ -14,11 +14,6 @@ It was built as a practice project to understand **full-stack development** conc
 - Node.js, Express.js (backend)
 - MongoDB (database)
 - BootStrap
+ 
+You can try it live here: [https://roomora-sm0v.onrender.com/](https://roomora-sm0v.onrender.com/)
 
-## 📂 Installation & Setup
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/rishi-09/roomora.git
-    cd roomora
-    npm install
-    npm start
