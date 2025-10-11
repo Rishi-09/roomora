@@ -21,7 +21,21 @@
         <img src="<%=originalUrl%>" alt="listing image" height="100px" width="200px" style="border-radius: 20px;">
          <input type="file" name="image" id="image"  class="form-control"  >
        </div>
-        
+        <div class="mb-3">
+        <label for="category">category</label>
+        <br>
+        <select name="category" required class="form-select" >
+          <option  value="<%= listing.category %>" ><%= listing.category %></option>
+          <option value="Beachfront">Beach</option>
+          <option value="Mountains">Mountains</option>
+          <option value="Rooms">Rooms</option>
+          <option value="Pool">Pool</option>
+          <option value="Snowy">Snowy</option>
+          <option value="Religious">Religious</option>
+          <option value="Mountain City">Mountain City</option>
+        </select>
+         
+       </div>
         <div class="row ">
             <div class="mb-3 col-md-4">
             <label for="price" class="form-label" >Price</label>

@@ -4,110 +4,134 @@
   #filters{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
+    border: 1px solid #e9e3e3;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #d4d0d0;
+    align-items: center ;
   }
 
   .filter{
     text-align: center;
     margin: 1rem 1rem 0 1rem;
     opacity: 0.6;
+    transition: opacity 0.3s ease;
   }
   .filter:hover{
     opacity: 1;
   }
-</style>
+  .toggleBtn{
+    border: 2px solid #d4d0d0;
+    border-radius: 15px;
+    padding: 10px;
+  }
+  .no-results {
+    text-align: center;
+    margin:  auto;
+    
+  }
+  .no-results img {
+    opacity: 0.7;
+  }
 
-<div id="filters" >
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
+</style>
+<div id="filters">
+  <div class="filter Trending">
+    <a href="/listings/filter/Trending" style="text-decoration:none; color:inherit;">
+      <div><i class="fa-solid fa-fire"></i></div>
+      <p>Trending</p>
+    </a>
   </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
+  <div class="filter Rooms">
+    <a href="/listings/filter/Rooms" style="text-decoration:none; color:inherit;">
+      <div><i class="fa-solid fa-bed"></i></div>
+      <p>Rooms</p>
+    </a>
   </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
+  <div class="filter Mountains">
+    <a href="/listings/filter/Mountains" style="text-decoration:none; color:inherit;">
+      <div><i class="fa-solid fa-mountain"></i></div>
+      <p>Mountains</p>
+    </a>
   </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
+  <div class="filter Religious">
+    <a href="/listings/filter/Religious" style="text-decoration:none; color:inherit;">
+      <div><i class="fa-solid fa-place-of-worship"></i></div>
+      <p>Religious</p>
+    </a>
   </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
+  <div class="filter Snowy">
+    <a href="/listings/filter/Snowy" style="text-decoration:none; color:inherit;">
+      <div><i class="fa-solid fa-snowflake"></i></div>
+      <p>Snowy</p>
+    </a>
   </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
+  <div class="filter Mountain City">
+    <a href="/listings/filter/Mountain City" style="text-decoration:none; color:inherit;">
+      <div><i class="fa-solid fa-mountain-city"></i></div>
+      <p>Mountain City</p>
+    </a>
   </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
+  <div class="filter Beach">
+    <a href="/listings/filter/Beach" style="text-decoration:none; color:inherit;">
+      <div><i class="fa-solid fa-umbrella-beach"></i></div>
+      <p>Beach</p>
+    </a>
   </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
+  <div class="filter Pools">
+    <a href="/listings/filter/Pools" style="text-decoration:none; color:inherit;">
+      <div><i class="fa-solid fa-person-swimming"></i></div>
+      <p>Pools</p>
+    </a>
   </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
-  </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
-  </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
-  </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
-  </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
-  </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
-  </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
-  </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
-  </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
-  </div>
-   <div class="filter" >
-    <div><i class="fa-solid fa-bed" ></i></div>
-    <p>Rooms</p>
-  </div>
-  <div class="filter" >
-    <div><i class="fa-solid fa-fire" ></i></div>
-    <p>Trending</p>
-  </div>
- </div>
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xsm-1">
-  <% for(let listing of allListings){ %>
-  <a class="listing-link" href="listings/<%= listing._id %>">
-    <div class="card listing-card h-92" style="width: 28em">
-      <img src="<%=listing.image.url%>" class="card-img-top" alt="..." />
-      <div class="card-img-overlay"></div>
-      <div class="card-body">
-        <p class="card-text">
-          <b><%= listing.title %></b><br />
-          &#8377; <%=listing.price.toLocaleString("en-IN") %>/night <br />
-          <%= listing.country %>
-        </p>
-      </div>
+  <div class="toggleBtn">
+    <div class="form-check form-check-reverse form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+      <label class="form-check-label" for="switchCheckDefault">Show Total After Taxes</label>
     </div>
-  </a>
+  </div>
+</div>
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-xsm-1">
+  <% if (allListings.length === 0) { %>
+    <div class="col text-center mt-5 no-results">
+      <img src="https://cdn-icons-png.flaticon.com/512/4076/4076503.png" alt="No Results" width="150">
+      <h4 class="mt-3">No listings found 🏕️</h4>
+      <p class="text-muted">Try adjusting your search or category filters.</p>
+      <a href="/listings" class="btn btn-outline-dark mt-2">View All Listings</a>
+    </div>
+  <% } else { %>
+
+    <% for (let listing of allListings) { %>
+      <a class="listing-link" href="/listings/<%= listing._id %>">
+        <div class="card listing-card h-92" style="width: 28em">
+          <img src="<%= listing.image.url %>" class="card-img-top" alt="..." />
+          <div class="card-body">
+            <p class="card-text">
+              <b><%= listing.title %></b><br />
+              &#8377; <%= listing.price.toLocaleString("en-IN") %>/night  
+              <span class="tax-info" style="display: none;"><i>+12%GST</i></span>
+              <br />
+              <%= listing.country %>
+            </p>
+          </div>
+        </div>
+      </a>
+    <% } %>
   <% } %>
 </div>
+
+<script>
+  const taxBtn = document.getElementById("switchCheckDefault");
+  const show_tax_info = document.getElementsByClassName("tax-info");
+  let show = false;
+  taxBtn.addEventListener("click",()=>{ 
+    
+      for(element of show_tax_info){
+        if(element.style.display==""){
+            element.style="display:none;"
+        }else{
+          element.style="display:;"
+        }
+      }
+  })
+</script>
