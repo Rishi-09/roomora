@@ -14,11 +14,19 @@ const {
   deleteListing,
   renderCreate,
   renderEdit,
+  search,
+  filter,
 } = require("../controller/listings.js");
 
 
 
 
+router.route("/search")
+  .get(wrapAsync(search))
+  .post(wrapAsync(search));
+
+router.route("/filter/:category")
+  .get(wrapAsync(filter));
 //Index Route and Create Listing
 router.route("/")
   .get(wrapAsync(index))
@@ -40,5 +48,7 @@ router.route("/:id/edit").get(
   validateListing,
   wrapAsync(renderEdit)
 );
+
+
 
 module.exports = router;
