@@ -20,7 +20,9 @@ const User = require("./models/user.js");
 const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
-const { error } = require("console");
+const wrapAsync = require("./utils/wrapAsync.js");
+const Listing = require("./models/listing.js");
+
 
 
 const MongoUrl = "mongodb://127.0.0.1:27017/roomora";
@@ -81,6 +83,10 @@ app.use((req,res,next)=>{
 })
 
 
+app.get("/", wrapAsync(async (req,res)=>{
+    let allListings = await Listing.find();
+    res.render("listings",{ allListings });
+} ) )
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
