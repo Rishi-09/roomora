@@ -34,7 +34,7 @@ const listingSchema = new mongoose.Schema({
       "Snowy",
       "Mountain City",
       "Beach",
-      "Pools",
+      "Pool",
       "Beachfront",
     ],
     default: "Trending",
